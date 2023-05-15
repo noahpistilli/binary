@@ -5,6 +5,17 @@ Binary decoder for Swift. Currently supports all data types with a fixed size.
 ## Example
 Below is an example of reading a simple data buffer into a struct.
 ```swift
+struct ReadTest: Decodable {
+    let a: UInt8
+    let b: UInt16
+    let c: UInt32
+}
+
+struct TestReadNestedValues: Decodable {
+    let a: UInt16
+    let b: ReadTest
+}
+
 let contents = Data([1, 2, 4, 4, 4, 4, 4, 4, 4])
 let a = try binary.Read(data: contents, order: .bigEndian, type: TestReadNestedValues.self)
 
