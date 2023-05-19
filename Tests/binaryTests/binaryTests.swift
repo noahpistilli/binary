@@ -10,7 +10,7 @@ final class binaryDecodingTests: XCTestCase {
     
     func testReadBigEndian() throws {
         let contents = Data([1, 2, 4, 4, 4, 4, 4])
-        let a = try binary.Read(data: contents, order: .bigEndian, type: ReadTest.self)
+        let a = try binary.Read(data: contents, order: .big, type: ReadTest.self)
         XCTAssertEqual(a.a, 1)
         XCTAssertEqual(a.b, 516)
         XCTAssertEqual(a.c, 67372036)
@@ -23,7 +23,7 @@ final class binaryDecodingTests: XCTestCase {
         
     func testNestedValues() throws {
         let contents = Data([1, 2, 4, 4, 4, 4, 4, 4, 4])
-        let a = try binary.Read(data: contents, order: .bigEndian, type: TestReadNestedValues.self)
+        let a = try binary.Read(data: contents, order: .big, type: TestReadNestedValues.self)
         XCTAssertEqual(a.a, 258)
         XCTAssertEqual(a.b.a, 4)
         XCTAssertEqual(a.b.b, 1028)
